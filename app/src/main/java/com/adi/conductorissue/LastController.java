@@ -1,6 +1,7 @@
 package com.adi.conductorissue;
 
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,6 @@ public class LastController extends Controller {
 
     public LastController(BottomController bottomController) {
         setTargetController(bottomController);
-
     }
 
     public LastController(Bundle args) {
@@ -25,8 +25,11 @@ public class LastController extends Controller {
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        if (getTargetController() == null)
+        if (getTargetController() == null) {
+//            Debug.waitForDebugger();
+            getTargetController(); //uncomment above and put BP here to debug process restart
             throw new UnsupportedOperationException("getTarget() can not be null");
+        }
     }
 
     @NonNull
